@@ -1,2 +1,0 @@
-Need to generate json templates for each major part of the game
-like : for character creation (The players will not have any characters at the beginning, the AI and human players will make characters)
