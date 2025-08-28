@@ -2,6 +2,7 @@ from components.character import Participant, GameCharacter, DungeonMaster
 from components.history import ConversationHistory
 from components.llm_service import LLMService
 from config import CAMPAIGN_TOPIC, DUNGEON_MASTER, HUMAN_PLAYER, PLAYER_SAM, PLAYER_ELLIE
+
 import textwrap
 import os
 import re
@@ -10,7 +11,7 @@ class Orchestrator:
     def __init__(self):
         print(f"[Action]: Initializing Orchestrator")
         
-        self.history = ConversationHistory(max_rounds=5)  # Keep only the most recent 5 rounds
+        self.history = ConversationHistory(max_rounds=5)  # Keep memory only the most recent 5 rounds
         self.llm_service = LLMService()
         self.dm = DungeonMaster(dm = DUNGEON_MASTER)
         self.player_list = [
@@ -24,7 +25,6 @@ class Orchestrator:
         self.player_index = 0
         
     def wrapped_print(self, text, prefix=""):
-        """Print text wrapped to the specified width with an optional prefix"""
         for line in text.split('\n'):
             print(prefix + textwrap.fill(line, width=self.wrap_width - len(prefix)))
     
@@ -78,7 +78,6 @@ class Orchestrator:
         print("Scene Setting")
         self.print_separator()
         
-        # Create a prompt for the DM's introduction
         players_info = "\n".join([
             f"- {p.name} playing as {p.character.character_name} ({p.character.character_role})" 
             for p in self.player_list
@@ -115,13 +114,11 @@ class Orchestrator:
     
     def dm_narration(self, after_player=None):
         """Provide narration after a player's turn"""
-        # Create a prompt for the DM's ongoing narration
         players_info = "\n".join([
             f"- {p.name} playing as {p.character.character_name} ({p.character.character_role})" 
             for p in self.player_list
         ])
         
-        # Include the name of the player who just spoke if provided
         player_context = ""
         if after_player:
             player_context = f"This narration follows after {after_player.character.character_name}'s statement."
@@ -190,7 +187,7 @@ class Orchestrator:
             
             self.print_separator()
             
-            if current_player.name == "Human_Player":  # Human player
+            if current_player.name == "Arven":  # Human player
                 print(f"YOUR TURN as [{current_player.character.character_name} | {current_player.character.character_role}]")
                 self.print_separator()
                 

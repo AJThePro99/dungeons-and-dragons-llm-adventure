@@ -12,7 +12,6 @@ class ConversationHistory:
             # We don't add DM narration to the current round, as DM is not a participant
             return
             
-        # Add player message to the current round
         self.current_round.append((current_player, game_character_name, message))
         
         # Check if the current round is complete (all players have spoken)
@@ -55,12 +54,10 @@ class ConversationHistory:
         if self.dm_narration:
             formatted_messages.append(f"Narrator: {self.dm_narration[2]}")
         
-        # Include all messages from the most recent rounds
         for round_messages in self.rounds:
             for current_player, game_character_name, message in round_messages:
                 formatted_messages.append(f"{game_character_name}: {message}")
         
-        # Include messages from the current round
         for current_player, game_character_name, message in self.current_round:
             formatted_messages.append(f"{game_character_name}: {message}")
                 

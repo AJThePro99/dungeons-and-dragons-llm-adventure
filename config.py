@@ -14,6 +14,6 @@ GAME_HENRY = GameCharacter(character_name="Henry", character_role="Tiefling Bard
 
 # === Player Configurations ===
 DUNGEON_MASTER = Participant(name="Hannah", personality="Fair, and chatty personality, with a strong talent for storytelling.", character="DUNGEON MASTER")
-HUMAN_PLAYER = Participant(name="Aadith", personality="Realistic, and Logic Oriented man", character=GAME_VALERIUS)
+HUMAN_PLAYER = Participant(name="Arven", personality="Realistic, and Logic Oriented man", character=GAME_VALERIUS)
 PLAYER_SAM = Participant(name="Sam", personality="Charming, Flirty, and flowery with words, playful man", character=GAME_HENRY)
 PLAYER_ELLIE = Participant(name="Ellie", personality="Kind, Curious, and protective woman", character=GAME_ARIANA)
